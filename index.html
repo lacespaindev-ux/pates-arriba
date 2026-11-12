@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pates Arriba · Carta, partidos y porra · La Arena, Gijón</title>
+<meta name="description" content="Pates Arriba, bar en La Arena (Gijón). Carta, partidos del Sporting en pantalla grande y la porra del partido.">
+<meta name="theme-color" content="#0d0d0c">
+<link rel="icon" href="https://www.patesarriba.com/wp-content/uploads/2024/12/isotipo-pates-2-300x300.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d0c; --bg2:#161614; --card:#1d1d1a; --line:#2e2e2a;
+  --ink:#f4f1e8; --mute:#a8a59a; --acc:#e2d531; --acc-ink:#141400; --red:#d8352a; --ok:#5ec27a;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.display{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;text-transform:uppercase;line-height:1}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:50;background:rgba(13,13,12,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:12px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand .iso{width:34px;height:34px;object-fit:contain}
+.brand .word{height:22px;width:auto}
+.spacer{flex:1}
+.open{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;padding:6px 11px;border-radius:99px;background:var(--card);border:1px solid var(--line);white-space:nowrap}
+.open i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(94,194,122,.6);animation:pulse 2s infinite}
+.open.closed i{background:var(--red);animation:none}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(94,194,122,0)}100%{box-shadow:0 0 0 0 rgba(94,194,122,0)}}
+.lang{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;font-size:12px;font-weight:700}
+.lang button{padding:6px 10px;color:var(--mute)}
+.lang button.on{background:var(--acc);color:var(--acc-ink)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 20px;max-width:1080px;margin:0 auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);color:var(--mute);transition:.2s}
+.tabs a.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* hero */
+.hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:zoom 14s ease-out forwards}
+@keyframes zoom{to{transform:scale(1)}}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,12,.15) 0%,rgba(13,13,12,.35) 45%,var(--bg) 100%)}
+.hero .wrap{position:relative;z-index:2;padding-bottom:40px;padding-top:120px}
+.hero h1{font-size:clamp(46px,11vw,104px);max-width:11ch}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero p{max-width:520px;margin:16px 0 26px;color:#e3e0d6;font-size:17px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:99px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn.y{background:var(--acc);color:var(--acc-ink)}
+.btn.g{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(6px)}
+.btn.wa{background:#25d366;color:#05220f}
+
+section{padding:72px 0}
+.sec-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(36px,7vw,60px);margin-top:8px}
+
+/* match strip */
+.next{background:var(--acc);color:var(--acc-ink)}
+.next-in{display:flex;align-items:center;gap:18px;padding:16px 20px;max-width:1080px;margin:0 auto;flex-wrap:wrap}
+.next b{font-family:Anton,sans-serif;font-weight:400;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.next .cd{display:flex;gap:6px;margin-left:auto}
+.next .cd span{background:var(--acc-ink);color:var(--acc);border-radius:10px;padding:6px 9px;font-weight:700;font-variant-numeric:tabular-nums;font-size:15px;min-width:52px;text-align:center}
+.next .cd small{display:block;font-size:10px;font-weight:600;opacity:.75;letter-spacing:.06em;text-transform:uppercase}
+
+/* carta */
+.demo-note{display:flex;gap:10px;align-items:flex-start;background:rgba(226,213,49,.08);border:1px dashed rgba(226,213,49,.5);color:#e9e3a8;border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:22px}
+.today{display:grid;grid-template-columns:150px 1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:26px}
+.today img{width:100%;height:100%;object-fit:cover;min-height:150px}
+.today div{padding:20px}
+.today h3{font-size:30px;margin:6px 0 6px}
+.today p{color:var(--mute);font-size:15px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:18px}
+.chips::-webkit-scrollbar{display:none}
+.chips button{flex:none;padding:9px 15px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-weight:600;font-size:14px;color:var(--mute)}
+.chips button.on{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.item{display:flex;gap:14px;align-items:center;padding:14px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;animation:fade .35s both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}}
+.item .ico{flex:none;width:52px;height:52px;border-radius:12px;background:var(--card);display:grid;place-items:center;font-size:24px;overflow:hidden}
+.item .ico img{width:100%;height:100%;object-fit:cover}
+.item h4{font-size:16px;font-weight:600}
+.item p{font-size:13.5px;color:var(--mute);margin-top:2px}
+.item .pr{margin-left:auto;font-weight:700;color:var(--mute);font-size:14px;white-space:nowrap}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--acc);color:var(--acc-ink);border-radius:5px;padding:2px 6px;margin-left:6px;vertical-align:2px}
+
+/* partidos */
+.matches{display:grid;gap:12px}
+.match{display:grid;grid-template-columns:86px 1fr auto;align-items:center;gap:16px;padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+.match.first{border-color:var(--acc);background:linear-gradient(135deg,rgba(226,213,49,.12),var(--card) 60%)}
+.date{text-align:center;border-right:1px solid var(--line);padding-right:14px}
+.date b{display:block;font-family:Anton,sans-serif;font-weight:400;font-size:30px;line-height:1}
+.date span{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.teams{font-weight:700;font-size:17px}
+.teams small{display:block;font-weight:500;color:var(--mute);font-size:13px;margin-top:3px}
+.rs{color:var(--red)}
+.match .btn{padding:10px 14px;font-size:13px}
+.screen{position:relative;margin-top:26px;border-radius:var(--r);overflow:hidden;aspect-ratio:16/7}
+.screen img{width:100%;height:100%;object-fit:cover}
+.screen div{position:absolute;inset:auto 0 0 0;padding:22px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.screen h3{font-size:28px}
+
+/* porra */
+.porra{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.porra-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px}
+.pcard .comp{font-size:13px;color:var(--mute);font-weight:600;text-align:center}
+.score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin:22px 0}
+.side{text-align:center}
+.side .nm{font-weight:700;font-size:15px;min-height:40px;display:flex;align-items:center;justify-content:center}
+.step{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
+.step button{width:42px;height:42px;border-radius:50%;background:var(--bg);border:1px solid var(--line);font-size:22px;font-weight:600}
+.step button:active{background:var(--acc);color:var(--acc-ink)}
+.step output{font-family:Anton,sans-serif;font-size:58px;width:56px;text-align:center;line-height:1}
+.vs{font-family:Anton,sans-serif;color:var(--mute);font-size:22px}
+.field{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:16px;margin-bottom:12px}
+.field:focus{outline:2px solid var(--acc);border-color:transparent}
+.pcard .btn{width:100%}
+.rules{font-size:13px;color:var(--mute);margin-top:14px;text-align:center}
+.ticket{display:none;text-align:center;padding:10px 0}
+.ticket.show{display:block;animation:pop .4s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+.ticket .big{font-family:Anton,sans-serif;font-size:64px;color:var(--acc);line-height:1;margin:10px 0}
+.ticket code{display:inline-block;margin-top:12px;font:700 15px ui-monospace,monospace;background:var(--bg);border:1px dashed var(--acc);padding:8px 14px;border-radius:8px;letter-spacing:.12em}
+.board h3{font-size:24px;margin-bottom:12px}
+.board ul{list-style:none;display:grid;gap:8px}
+.board li{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;font-size:15px}
+.board li b{font-family:Anton,sans-serif;font-weight:400;font-size:20px;letter-spacing:.04em}
+.board li.me{border-color:var(--acc)}
+.stats{display:flex;gap:10px;margin-top:14px}
+.stats div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.stats b{display:block;font-family:Anton,sans-serif;font-weight:400;font-size:26px;color:var(--acc)}
+.stats span{font-size:12px;color:var(--mute)}
+
+/* opiniones */
+.rating{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:22px}
+.rating .n{font-family:Anton,sans-serif;font-size:72px;line-height:1}
+.stars{color:var(--acc);font-size:22px;letter-spacing:2px}
+.rating small{color:var(--mute)}
+.themes{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.theme{padding:18px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.theme .e{font-size:26px}
+.theme h4{margin:8px 0 4px;font-size:16px}
+.theme p{color:var(--mute);font-size:14px}
+
+/* galeria */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:190px;gap:8px}
+.gal img{width:100%;height:100%;object-fit:cover;border-radius:12px;cursor:zoom-in;transition:filter .2s}
+.gal img:hover{filter:brightness(1.12)}
+.gal .t{grid-row:span 2}
+.gal .w{grid-column:span 2}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.lb.on{display:flex}
+.lb img{max-height:90vh;border-radius:10px}
+
+/* info */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.hours{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:8px 20px}
+.hours li{list-style:none;display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.hours li:last-child{border:0}
+.hours li.td{color:var(--acc);font-weight:700}
+.map{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);min-height:300px}
+.map iframe{width:100%;height:100%;min-height:300px;border:0;filter:grayscale(.4) invert(.9) hue-rotate(180deg)}
+.contact{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+/* qr */
+.qr-sec{text-align:center}
+.tent{display:inline-block;margin:26px auto 0;background:#f4f1e8;color:#111;border-radius:18px;padding:26px 30px 22px;box-shadow:0 30px 60px rgba(0,0,0,.5);transform:perspective(800px) rotateX(8deg)}
+.tent .iso{width:54px;margin:0 auto 6px;filter:invert(1)}
+.tent h4{font-family:Anton,sans-serif;font-weight:400;font-size:26px;text-transform:uppercase}
+.tent p{font-size:13px;margin:2px 0 12px;color:#444}
+#qr{width:180px;height:180px;margin:0 auto;background:#fff;padding:8px;border-radius:8px}
+#qr svg,#qr img{width:100%;height:100%}
+.tent small{display:block;margin-top:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+
+footer{padding:40px 0 110px;text-align:center;color:var(--mute);font-size:13px;border-top:1px solid var(--line)}
+footer img{width:44px;margin:0 auto 10px;opacity:.8}
+.fab{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.fab svg{width:30px;height:30px;fill:#fff}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:99px;font-weight:600;font-size:14px;opacity:0;transition:.3s;z-index:90;pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:820px){
+  .porra-grid,.info-grid{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+  .gal .w{grid-column:span 2}
+  .match{grid-template-columns:70px 1fr}
+  .match .btn{grid-column:1/-1}
+  .today{grid-template-columns:110px 1fr}
+  .next .cd{margin-left:0}
+  .brand .word{display:none}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#inicio">
+      <img class="iso" src="https://www.patesarriba.com/wp-content/uploads/2024/12/isotipo-pates-2-300x300.png" alt="Pates Arriba">
+      <img class="word" src="https://www.patesarriba.com/wp-content/uploads/2024/10/pates-II-1024x351.png" alt="">
+    </a>
+    <span class="spacer"></span>
+    <span class="open" id="open"><i></i><span id="openTxt">Abierto</span></span>
+    <div class="lang"><button class="on" data-l="es">ES</button><button data-l="en">EN</button></div>
+  </div>
+  <nav class="tabs" id="tabs">
+    <a href="#carta" data-es="Carta" data-en="Menu">Carta</a>
+    <a href="#partidos" data-es="Partidos" data-en="Matches">Partidos</a>
+    <a href="#porra" data-es="Porra" data-en="Predict">Porra</a>
+    <a href="#opiniones" data-es="Opiniones" data-en="Reviews">Opiniones</a>
+    <a href="#fotos" data-es="Fotos" data-en="Photos">Fotos</a>
+    <a href="#info" data-es="Horario" data-en="Hours">Horario</a>
+  </nav>
+</header>
+
+<section class="hero" id="inicio" style="padding:0">
+  <img src="https://www.patesarriba.com/wp-content/uploads/2024/11/Pates-Arriba-67-2048x1365.jpg" alt="Barra de Pates Arriba">
+  <div class="wrap">
+    <span class="eyebrow" data-es="La Arena · Gijón" data-en="La Arena · Gijón">La Arena · Gijón</span>
+    <h1 class="display" style="margin-top:10px" data-es="Cañas, tapas y <em>fútbol</em>" data-en="Beer, tapas &amp; <em>football</em>">Cañas, tapas y <em>fútbol</em></h1>
+    <p data-es="Estrella Galicia recién llegada del tanque, una tapa con cada consumición y el Sporting en pantalla grande. Desde las 8 de la mañana." data-en="Fresh tank Estrella Galicia, a free tapa with every drink and Sporting on the big screen. Open from 8 am.">Estrella Galicia recién llegada del tanque, una tapa con cada consumición y el Sporting en pantalla grande. Desde las 8 de la mañana.</p>
+    <div class="btns">
+      <a class="btn y" href="#carta" data-es="Ver la carta" data-en="See the menu">Ver la carta</a>
+      <a class="btn g" href="#porra" data-es="⚽ Juega la porra" data-en="⚽ Play the predictor">⚽ Juega la porra</a>
+    </div>
+  </div>
+</section>
+
+<div class="next" id="nextStrip">
+  <div class="next-in">
+    <div>
+      <span style="font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase" data-es="Próximo partido en Pates" data-en="Next match at Pates">Próximo partido en Pates</span><br>
+      <b id="nextName">—</b> <span id="nextWhen" style="font-weight:600"></span>
+    </div>
+    <div class="cd" id="cd"></div>
+  </div>
+</div>
+
+<!-- CARTA -->
+<section id="carta">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <div><span class="eyebrow" data-es="Escanea, mira y pide" data-en="Scan, browse, order">Escanea, mira y pide</span><h2 class="display" data-es="La carta" data-en="The menu">La carta</h2></div>
+    </div>
+    <div class="demo-note reveal"><span>✏️</span><span data-es="Carta de muestra para la demo. En la versión real va vuestra carta con vuestros precios, y la cambiáis vosotros desde el móvil." data-en="Sample menu for this demo. The real version shows your own menu and prices, editable from your phone.">Carta de muestra para la demo. En la versión real va vuestra carta con vuestros precios, y la cambiáis vosotros desde el móvil.</span></div>
+
+    <div class="today reveal">
+      <img src="https://www.patesarriba.com/wp-content/uploads/2024/12/87A7929-scaled.jpg" alt="">
+      <div>
+        <span class="eyebrow" data-es="Tapa del día" data-en="Today's tapa">Tapa del día</span>
+        <h3 class="display" data-es="Tortilla de la casa" data-en="House tortilla">Tortilla de la casa</h3>
+        <p data-es="Va con tu caña o tu vino. Cambia cada día: aquí la veis antes de pedir." data-en="Comes free with your drink. It changes daily — check it here before ordering.">Va con tu caña o tu vino. Cambia cada día: aquí la veis antes de pedir.</p>
+      </div>
+    </div>
+
+    <div class="chips" id="chips"></div>
+    <div class="menu" id="menu"></div>
+  </div>
+</section>
+
+<!-- PARTIDOS -->
+<section id="partidos" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <div><span class="eyebrow" data-es="Pantallas en todo el bar" data-en="Screens all around the bar">Pantallas en todo el bar</span><h2 class="display" data-es="Qué echamos" data-en="What's on">Qué echamos</h2></div>
+      <span style="color:var(--mute);font-size:14px" data-es="Reserva tu mesa para el partido por WhatsApp" data-en="Book your table for the match on WhatsApp">Reserva tu mesa para el partido por WhatsApp</span>
+    </div>
+    <div class="matches" id="matches"></div>
+    <div class="screen reveal">
+      <img src="https://www.patesarriba.com/wp-content/uploads/2024/10/Pates-Arriba-38-1024x683.jpg" alt="Pantallas de Pates Arriba">
+      <div><h3 class="display" data-es="Ambiente de partido, sin perder el buen rollo" data-en="Match-day atmosphere, always friendly">Ambiente de partido, sin perder el buen rollo</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORRA -->
+<section id="porra" class="porra">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <div><span class="eyebrow" data-es="Acierta y la caña es nuestra" data-en="Get it right, the beer's on us">Acierta y la caña es nuestra</span><h2 class="display" data-es="La porra del partido" data-en="Match predictor">La porra del partido</h2></div>
+    </div>
+    <div class="porra-grid">
+      <div class="pcard reveal">
+        <div id="porraForm">
+          <div class="comp" id="pComp">LALIGA Hypermotion</div>
+          <div class="score">
+            <div class="side"><div class="nm" id="pHome">—</div><div class="step"><button data-t="h" data-d="-1">−</button><output id="sh">0</output><button data-t="h" data-d="1">+</button></div></div>
+            <div class="vs">VS</div>
+            <div class="side"><div class="nm" id="pAway">—</div><div class="step"><button data-t="a" data-d="-1">−</button><output id="sa">0</output><button data-t="a" data-d="1">+</button></div></div>
+          </div>
+          <input class="field" id="pName" maxlength="24" placeholder="Tu nombre o mote" data-ph-es="Tu nombre o mote" data-ph-en="Your name or nickname">
+          <button class="btn y" id="pSend" data-es="Apostar mi resultado" data-en="Lock in my prediction">Apostar mi resultado</button>
+          <p class="rules" data-es="Una apuesta por persona. Se cierra al empezar el partido. Si aciertas el resultado exacto, enseña tu código en la barra y te invitamos a una caña." data-en="One prediction per person. Closes at kick-off. Get the exact score right, show your code at the bar and your beer is on us.">Una apuesta por persona. Se cierra al empezar el partido. Si aciertas el resultado exacto, enseña tu código en la barra y te invitamos a una caña.</p>
+        </div>
+        <div class="ticket" id="ticket">
+          <span class="eyebrow" data-es="Apuesta registrada" data-en="Prediction saved">Apuesta registrada</span>
+          <div class="big" id="tScore">1 - 2</div>
+          <div id="tTeams" style="font-weight:600"></div>
+          <code id="tCode">PA-0000</code>
+          <p class="rules" data-es="Haz captura de esta pantalla. Si aciertas, enséñala en la barra." data-en="Screenshot this. If you're right, show it at the bar.">Haz captura de esta pantalla. Si aciertas, enséñala en la barra.</p>
+          <button class="btn g" id="tAgain" style="margin-top:14px;width:auto" data-es="Ver la porra" data-en="See all predictions">Ver la porra</button>
+        </div>
+      </div>
+      <div class="board reveal">
+        <h3 class="display" data-es="Así va la porra" data-en="Predictions so far">Así va la porra</h3>
+        <ul id="board"></ul>
+        <div class="stats">
+          <div><b id="stN">0</b><span data-es="apuestas" data-en="predictions">apuestas</span></div>
+          <div><b id="stTop">—</b><span data-es="resultado más votado" data-en="most picked">resultado más votado</span></div>
+          <div><b id="stWin">0%</b><span data-es="ven ganar al Sporting" data-en="back Sporting">ven ganar al Sporting</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPINIONES -->
+<section id="opiniones">
+  <div class="wrap">
+    <div class="sec-h reveal"><div><span class="eyebrow" data-es="Lo que dice la gente" data-en="What people say">Lo que dice la gente</span><h2 class="display" data-es="Opiniones" data-en="Reviews">Opiniones</h2></div></div>
+    <div class="rating reveal">
+      <div class="n">4,2</div>
+      <div><div class="stars">★★★★☆</div><small data-es="Más de 650 reseñas en Google" data-en="650+ Google reviews">Más de 650 reseñas en Google</small></div>
+    </div>
+    <div class="themes">
+      <div class="theme reveal"><div class="e">🍺</div><h4 data-es="La Estrella, bien tirada" data-en="Perfectly poured Estrella">La Estrella, bien tirada</h4><p data-es="Lo que más se repite: la calidad de la cerveza." data-en="The most repeated point: the beer quality.">Lo que más se repite: la calidad de la cerveza.</p></div>
+      <div class="theme reveal"><div class="e">🥖</div><h4 data-es="Tapa con cada consumición" data-en="Free tapa with every drink">Tapa con cada consumición</h4><p data-es="Variadas y siempre bien hechas, dicen." data-en="Varied and always well made, they say.">Variadas y siempre bien hechas, dicen.</p></div>
+      <div class="theme reveal"><div class="e">☀️</div><h4 data-es="La terraza" data-en="The terrace">La terraza</h4><p data-es="Para alargar la charla al lado de la playa." data-en="Made for long chats near the beach.">Para alargar la charla al lado de la playa.</p></div>
+      <div class="theme reveal"><div class="e">🤝</div><h4 data-es="Laura y Gonzalo" data-en="Laura &amp; Gonzalo">Laura y Gonzalo</h4><p data-es="Mucha gente nombra a los dueños por el trato." data-en="Lots of people mention the owners by name.">Mucha gente nombra a los dueños por el trato.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOTOS -->
+<section id="fotos" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h reveal"><div><span class="eyebrow" data-es="Pates por dentro" data-en="Inside Pates">Pates por dentro</span><h2 class="display" data-es="Fotos" data-en="Photos">Fotos</h2></div></div>
+    <div class="gal" id="gal">
+      <img class="t" src="https://www.patesarriba.com/wp-content/uploads/2024/10/Pates-Arriba-46-1365x2048.jpg" alt="Tirando una caña" loading="lazy">
+      <img class="w" src="https://www.patesarriba.com/wp-content/uploads/2024/10/Pates-Arriba-69-1024x683.jpg" alt="Tanques de Estrella Galicia" loading="lazy">
+      <img src="https://www.patesarriba.com/wp-content/uploads/2024/10/Pates-Arriba-5-1024x683.jpg" alt="Cerveza natural" loading="lazy">
+      <img src="https://www.patesarriba.com/wp-content/uploads/2024/12/87A7945-1024x683.jpg" alt="Café" loading="lazy">
+      <img class="w" src="https://www.patesarriba.com/wp-content/uploads/2024/12/87A7931-1024x683.jpg" alt="Terraza" loading="lazy">
+      <img class="t" src="https://www.patesarriba.com/wp-content/uploads/2024/10/Pates-Arriba-94-1365x2048.jpg" alt="Vermut" loading="lazy">
+      <img src="https://www.patesarriba.com/wp-content/uploads/2024/10/Pates-Arriba-82-1024x683.jpg" alt="Barra" loading="lazy">
+      <img src="https://www.patesarriba.com/wp-content/uploads/2024/10/Pates-Arriba-16-1024x683.jpg" alt="Caña" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section id="info" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-h reveal"><div><span class="eyebrow">Calle Manso 14 · La Arena</span><h2 class="display" data-es="Horario y dónde estamos" data-en="Hours &amp; location">Horario y dónde estamos</h2></div></div>
+    <div class="info-grid">
+      <div class="reveal">
+        <ul class="hours" id="hours"></ul>
+        <div class="contact">
+          <a class="btn wa" id="waBook" href="#" target="_blank" rel="noopener" data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</a>
+          <a class="btn g" href="tel:+34625279082" data-es="Llamar" data-en="Call">Llamar</a>
+          <a class="btn g" href="https://www.google.com/maps/search/?api=1&query=Pates+Arriba+Gij%C3%B3n&query_place_id=ChIJIc6E4358Ng0RRQ1sXsp3d8Y" target="_blank" rel="noopener" data-es="Cómo llegar" data-en="Directions">Cómo llegar</a>
+        </div>
+      </div>
+      <div class="map reveal"><iframe loading="lazy" title="Mapa" src="https://www.google.com/maps?q=Pates+Arriba,+Calle+Manso+14,+Gij%C3%B3n&output=embed"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<!-- QR -->
+<section class="qr-sec">
+  <div class="wrap">
+    <span class="eyebrow" data-es="Así quedaría en cada mesa" data-en="How it looks on each table">Así quedaría en cada mesa</span>
+    <h2 class="display" style="font-size:clamp(34px,6vw,54px);margin-top:8px" data-es="Escanea y listo" data-en="Scan and go">Escanea y listo</h2>
+    <p style="color:var(--mute);max-width:520px;margin:12px auto 0" data-es="Un cartelito en cada mesa: carta, tapa del día, partidos y porra. Prueba a escanearlo con el móvil." data-en="A small sign on each table: menu, today's tapa, matches and predictor. Try scanning it.">Un cartelito en cada mesa: carta, tapa del día, partidos y porra. Prueba a escanearlo con el móvil.</p>
+    <div class="tent">
+      <img class="iso" src="https://www.patesarriba.com/wp-content/uploads/2024/12/isotipo-pates-2-300x300.png" alt="">
+      <h4>Pates Arriba</h4>
+      <p data-es="Carta · Partidos · Porra" data-en="Menu · Matches · Predictor">Carta · Partidos · Porra</p>
+      <div id="qr"></div>
+      <small data-es="Escanéame" data-en="Scan me">Escanéame</small>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="https://www.patesarriba.com/wp-content/uploads/2024/12/isotipo-pates-2-300x300.png" alt="">
+  Pates Arriba · Calle Manso 14, Gijón<br>
+  <span data-es="Demo preparada por Lace" data-en="Demo by Lace">Demo preparada por Lace</span>
+</footer>
+
+<a class="fab" id="fab" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.5 1.8 6.4L3 29l7-1.8c1.8 1 3.9 1.5 6 1.5 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6 0-5.9 4.8-10.6 10.7-10.6s10.7 4.8 10.7 10.6-4.8 10.6-10.7 10.6zm5.9-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.7-.5z"/></svg></a>
+<div class="lb" id="lb"><img alt=""></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<script>
+const PHONE='34625279082';
+const PAGE='https://lacespaindev-ux.github.io/pates-arriba/';
+let L='es';
+
+/* ---------- partidos (LaLiga Hypermotion, laliga.com) ---------- */
+const MATCHES=[
+  {h:'Real Sociedad B',a:'Real Sporting',t:'2026-11-14T15:15:00Z',tv:'LALIGA TV Hypermotion'},
+  {h:'Real Sporting',a:'UD Las Palmas',t:'2026-11-22T15:15:00Z',tv:'LALIGA TV Hypermotion · Orange Fútbol 2'},
+  {h:'UD Almería',a:'Real Sporting',t:'2026-11-29T20:00:00Z',tv:'LALIGA TV Hypermotion · Orange Fútbol 2'}
+];
+const upcoming=()=>MATCHES.filter(m=>new Date(m.t).getTime()+2*3600e3>Date.now());
+const DAYS={es:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],en:['Sun','Mon','Tue','Wed','Thu','Fri','Sat']};
+const MON={es:['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']};
+const mad=d=>new Date(d.toLocaleString('en-US',{timeZone:'Europe/Madrid'}));
+const hhmm=d=>{const x=mad(d);return String(x.getHours()).padStart(2,'0')+':'+String(x.getMinutes()).padStart(2,'0')};
+const nm=s=>s.replace('Real Sporting','<span class="rs">Sporting</span>');
+const plain=s=>s.replace('Real Sporting','Sporting');
+const wa=t=>`https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`;
+
+function renderMatches(){
+  const up=upcoming(), box=document.getElementById('matches');
+  box.innerHTML=up.map((m,i)=>{const d=mad(new Date(m.t));
+    const msg=L==='es'?`Hola, quería reservar mesa para ver el ${plain(m.h)} - ${plain(m.a)}. Somos __ personas.`:`Hi, I'd like to book a table for ${plain(m.h)} vs ${plain(m.a)}. We are __ people.`;
+    return `<div class="match ${i===0?'first':''} reveal in">
+      <div class="date"><span>${DAYS[L][d.getDay()]}</span><b>${d.getDate()}</b><span>${MON[L][d.getMonth()]} · ${hhmm(new Date(m.t))}</span></div>
+      <div class="teams">${nm(m.h)} <span style="color:var(--mute)">vs</span> ${nm(m.a)}<small>LALIGA Hypermotion · ${m.tv}</small></div>
+      <a class="btn ${i===0?'y':'g'}" href="${wa(msg)}" target="_blank" rel="noopener">${L==='es'?'Reservar mesa':'Book a table'}</a></div>`}).join('')
+    || `<p style="color:var(--mute)">${L==='es'?'Pronto publicamos los próximos partidos.':'Next matches coming soon.'}</p>`;
+  const n=up[0];
+  if(n){document.getElementById('nextName').innerHTML=`${plain(n.h)} – ${plain(n.a)}`;
+    const d=mad(new Date(n.t));document.getElementById('nextWhen').textContent=`· ${DAYS[L][d.getDay()]} ${d.getDate()} ${MON[L][d.getMonth()]}, ${hhmm(new Date(n.t))}`;}
+}
+function tick(){
+  const n=upcoming()[0],cd=document.getElementById('cd');if(!n)return;
+  let s=Math.max(0,Math.floor((new Date(n.t)-Date.now())/1000));
+  if(s===0){cd.innerHTML=`<span>${L==='es'?'¡En juego!':'Live now!'}</span>`;return}
+  const p=[[Math.floor(s/86400),L==='es'?'días':'days'],[Math.floor(s%86400/3600),'h'],[Math.floor(s%3600/60),'min'],[s%60,'s']];
+  cd.innerHTML=p.map(([v,u])=>`<span>${String(v).padStart(2,'0')}<small>${u}</small></span>`).join('');
+}
+
+/* ---------- porra ---------- */
+const KEY='pates-porra-v1';
+const SEED=[['Manolo',2,1],['Bea',1,1],['Chusi',0,2],['Iván "el de la terraza"',1,2],['Marta',0,1],['Pelayo',1,2],['Lucía',2,2]];
+let sh=0,sa=0;
+const store=()=>{try{return JSON.parse(localStorage.getItem(KEY))||null}catch(e){return null}};
+const save=v=>{try{localStorage.setItem(KEY,JSON.stringify(v))}catch(e){}};
+let mine=store();
+function porraMatch(){return upcoming().find(m=>new Date(m.t)>Date.now())||upcoming()[0]}
+function renderPorra(){
+  const m=porraMatch();if(!m)return;
+  document.getElementById('pHome').innerHTML=nm(m.h);document.getElementById('pAway').innerHTML=nm(m.a);
+  const d=mad(new Date(m.t));
+  document.getElementById('pComp').textContent=`LALIGA Hypermotion · ${DAYS[L][d.getDay()]} ${d.getDate()} ${MON[L][d.getMonth()]} · ${hhmm(new Date(m.t))}`;
+  const homeSp=m.h.includes('Sporting');
+  const all=SEED.map(([n,h,a])=>({n,h,a})); if(mine&&mine.t===m.t) all.unshift({n:mine.n,h:mine.h,a:mine.a,me:1});
+  document.getElementById('board').innerHTML=all.slice(0,8).map(x=>`<li class="${x.me?'me':''}"><span>${x.me?'⭐ ':''}${x.n.replace(/</g,'')}</span><b>${x.h} - ${x.a}</b></li>`).join('');
+  const c={};all.forEach(x=>{const k=`${x.h}-${x.a}`;c[k]=(c[k]||0)+1});
+  const top=Object.entries(c).sort((a,b)=>b[1]-a[1])[0][0];
+  const win=all.filter(x=>homeSp?x.h>x.a:x.a>x.h).length;
+  document.getElementById('stN').textContent=all.length;document.getElementById('stTop').textContent=top;
+  document.getElementById('stWin').textContent=Math.round(win/all.length*100)+'%';
+  if(mine&&mine.t===m.t){showTicket(m)}
+}
+function showTicket(m){
+  document.getElementById('porraForm').style.display='none';
+  const t=document.getElementById('ticket');t.classList.add('show');
+  document.getElementById('tScore').textContent=`${mine.h} - ${mine.a}`;
+  document.getElementById('tTeams').textContent=`${plain(m.h)} vs ${plain(m.a)} · ${mine.n}`;
+  document.getElementById('tCode').textContent=mine.code;
+}
+document.querySelectorAll('.step button').forEach(b=>b.onclick=()=>{
+  const d=+b.dataset.d;if(b.dataset.t==='h'){sh=Math.min(9,Math.max(0,sh+d));document.getElementById('sh').textContent=sh}
+  else{sa=Math.min(9,Math.max(0,sa+d));document.getElementById('sa').textContent=sa}});
+document.getElementById('pSend').onclick=()=>{
+  const n=document.getElementById('pName').value.trim();
+  if(!n){toast(L==='es'?'Pon tu nombre para la porra':'Add your name first');document.getElementById('pName').focus();return}
+  const m=porraMatch();
+  mine={n,h:sh,a:sa,t:m.t,code:'PA-'+Math.random().toString(36).slice(2,6).toUpperCase()};save(mine);
+  renderPorra();toast(L==='es'?'¡Apuesta guardada! Suerte 🍀':'Prediction saved! Good luck 🍀');
+};
+document.getElementById('tAgain').onclick=()=>document.querySelector('.board').scrollIntoView({behavior:'smooth',block:'center'});
+
+/* ---------- carta (muestra) ---------- */
+const CARTA={
+  cervezas:{es:'Cervezas',en:'Beers',items:[
+    ['🍺','Caña Estrella Galicia de tanque','Tank-fresh Estrella Galicia','Recién llegada de la fábrica, sin pasteurizar','Unpasteurised, straight from the brewery',1],
+    ['🍺','Doble / Jarra','Pint','Estrella Galicia de tanque','Tank Estrella Galicia'],
+    ['🍺','1906 Reserva Especial','1906 Reserva Especial','Tostada, con más cuerpo','Amber, full-bodied'],
+    ['🍺','Sin alcohol 0,0','Alcohol-free 0.0','Estrella Galicia 0,0','Estrella Galicia 0.0']]},
+  vermut:{es:'Vermut y vinos',en:'Vermouth & wine',items:[
+    ['🍷','Vermut de grifo','Vermouth on tap','Con su naranja y su aceituna','With orange and olive',1],
+    ['🍷','Albariño','Albariño','Copa · blanco gallego','Glass · Galician white'],
+    ['🍷','Rioja crianza','Rioja crianza','Copa · tinto','Glass · red'],
+    ['🍷','Verdejo','Verdejo','Copa · blanco','Glass · white']]},
+  tapas:{es:'Tapas y raciones',en:'Tapas & plates',items:[
+    ['🥘','Tapa del día','Tapa of the day','Gratis con tu consumición','Free with your drink',1],
+    ['🧀','Tabla de quesos asturianos','Asturian cheese board','Para compartir','To share'],
+    ['🥓','Tabla de embutidos','Cured meats board','Para compartir','To share'],
+    ['🍤','Rabas','Fried squid','Ración','Plate'],
+    ['🥔','Patatas bravas','Patatas bravas','Ración','Plate']]},
+  desayunos:{es:'Desayunos',en:'Breakfast',items:[
+    ['☕','Café con leche','Café con leche','Desde las 8:00','From 8 am'],
+    ['🥐','Café + pincho de tortilla','Coffee + tortilla','Desayuno completo','Full breakfast',1],
+    ['🍞','Tostada con tomate y aceite','Toast with tomato & olive oil','',''],
+    ['🍊','Zumo de naranja natural','Fresh orange juice','','']]},
+  refrescos:{es:'Sin alcohol',en:'Soft drinks',items:[
+    ['🥤','Refrescos','Soft drinks','Coca-Cola, Fanta, Aquarius…','Coke, Fanta, Aquarius…'],
+    ['💧','Agua','Water','Mineral o con gas','Still or sparkling'],
+    ['🍵','Infusiones','Herbal teas','','']]}
+};
+let cat='cervezas';
+function renderCarta(){
+  document.getElementById('chips').innerHTML=Object.entries(CARTA).map(([k,v])=>`<button class="${k===cat?'on':''}" data-k="${k}">${v[L]}</button>`).join('');
+  document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{cat=b.dataset.k;renderCarta()});
+  document.getElementById('menu').innerHTML=CARTA[cat].items.map(([e,es,en,des,den,star],i)=>`<div class="item" style="animation-delay:${i*40}ms"><div class="ico">${e}</div><div><h4>${L==='es'?es:en}${star?`<span class="tag">${L==='es'?'Top':'Top'}</span>`:''}</h4>${(L==='es'?des:den)?`<p>${L==='es'?des:den}</p>`:''}</div><span class="pr">— €</span></div>`).join('');
+}
+
+/* ---------- horario ---------- */
+const H=[[1,'08:00','24:00'],[2,'08:00','24:00'],[3,'08:00','24:00'],[4,'08:00','24:00'],[5,'08:00','01:00'],[6,'09:00','01:00'],[0,'09:00','24:00']];
+const DFULL={es:['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],en:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']};
+const toMin=s=>{const[a,b]=s.split(':').map(Number);return a*60+b};
+function isOpen(){const n=mad(new Date()),d=n.getDay(),m=n.getHours()*60+n.getMinutes();
+  for(const[dd,o,c] of H){let O=toMin(o),C=toMin(c);if(C<=O)C+=1440;
+    if(dd===d&&m>=O&&m<C)return c;if((dd+1)%7===d&&m+1440>=O&&m+1440<C)return c}return null}
+function renderHours(){
+  const today=mad(new Date()).getDay();
+  document.getElementById('hours').innerHTML=H.map(([d,o,c])=>`<li class="${d===today?'td':''}"><span>${DFULL[L][d]}</span><span>${o} – ${c==='24:00'?'00:00':c}</span></li>`).join('');
+  const c=isOpen(),el=document.getElementById('open');
+  el.classList.toggle('closed',!c);
+  document.getElementById('openTxt').textContent=c?(L==='es'?`Abierto · hasta las ${c==='24:00'?'00:00':c}`:`Open · until ${c==='24:00'?'00:00':c}`):(L==='es'?'Cerrado ahora':'Closed now');
+}
+
+/* ---------- idioma ---------- */
+function setLang(l){L=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-es]').forEach(e=>e.innerHTML=e.dataset[l]);
+  document.querySelectorAll('[data-ph-es]').forEach(e=>e.placeholder=e.dataset['ph'+(l==='es'?'Es':'En')]);
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  renderAll();
+}
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+
+function renderAll(){
+  renderMatches();renderPorra();renderCarta();renderHours();tick();
+  const gen=L==='es'?'Hola, quería reservar una mesa en Pates Arriba.':'Hi, I would like to book a table at Pates Arriba.';
+  document.getElementById('waBook').href=wa(gen);document.getElementById('fab').href=wa(gen);
+}
+renderAll();setInterval(tick,1000);setInterval(renderHours,60000);
+
+/* ---------- QR ---------- */
+try{const q=qrcode(0,'M');q.addData(PAGE);q.make();document.getElementById('qr').innerHTML=q.createSvgTag({cellSize:4,margin:0,scalable:true})}catch(e){}
+
+/* ---------- galería ---------- */
+const lb=document.getElementById('lb');
+document.querySelectorAll('#gal img').forEach(i=>i.onclick=()=>{lb.querySelector('img').src=i.src;lb.classList.add('on')});
+lb.onclick=()=>lb.classList.remove('on');
+
+/* ---------- tabs activos + reveal ---------- */
+const secs=['carta','partidos','porra','opiniones','fotos','info'].map(id=>document.getElementById(id));
+const tabs=[...document.querySelectorAll('#tabs a')];
+addEventListener('scroll',()=>{let cur=null;secs.forEach(s=>{if(s.getBoundingClientRect().top<160)cur=s.id});
+  tabs.forEach(a=>{const on=a.getAttribute('href')==='#'+cur;if(on&&!a.classList.contains('on')){const n=a.parentNode;n.scrollTo({left:a.offsetLeft-n.clientWidth/2+a.offsetWidth/2,behavior:'smooth'})}a.classList.toggle('on',on)})},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),2400)}
+</script>
+</body>
+</html>
